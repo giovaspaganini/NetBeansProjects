@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class TelaCargo extends JFrame {
@@ -24,6 +25,7 @@ public class TelaCargo extends JFrame {
     private JRadioButton rbZonaRural = new JRadioButton("Zona Rural");
     private JRadioButton rbZonaUrbana = new JRadioButton("Zona Urbana");
     private JRadioButton rbZonaCosmo = new JRadioButton("Zona Cosmopolitana");
+    private JTextArea taSeuComentario = new JTextArea(5, 30);
     
     public TelaCargo() throws HeadlessException {
         super("Cadastro/Alteração de Cargos");
@@ -56,8 +58,12 @@ public class TelaCargo extends JFrame {
         bgZona.add(rbZonaUrbana);
         bgZona.add(rbZonaCosmo);
         
+        p.add(taSeuComentario);
+        
         p.add(lbMsg);
         p.add(lbResp);
+        
+        //
         
         btOk.addActionListener(
                 new ActionListener() {
