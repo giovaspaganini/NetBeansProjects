@@ -22,9 +22,9 @@ public class TelaCargo extends JFrame {
     private JLabel lbResp = new JLabel();
     private JComboBox<String> cbSexo = new JComboBox<>();
     private JCheckBox cxMaioridade = new JCheckBox("Sou maior de 18 anos!");
-    private JRadioButton rbZonaRural = new JRadioButton("Zona Rural");
-    private JRadioButton rbZonaUrbana = new JRadioButton("Zona Urbana");
-    private JRadioButton rbZonaCosmo = new JRadioButton("Zona Cosmopolitana");
+    private JRadioButton rbAmigo = new JRadioButton("Um amigo");
+    private JRadioButton rbAnuncio = new JRadioButton("Um anuncio na internet");
+    private JRadioButton rbSozinho = new JRadioButton("Encontrei sozinho");
     private JTextArea taSeuComentario = new JTextArea(5, 30);
     
     public TelaCargo() throws HeadlessException {
@@ -37,6 +37,11 @@ public class TelaCargo extends JFrame {
         
         p.add(new JLabel("Nome: "));        
         p.add(jtfNome);        
+        
+        if(jtfNome.getText() == null){
+            lbMsg.setText("Por favor digite o nome!");
+        }
+        
         p.add(cbSexo);  
         
         JButton btOk = new JButton("Me aperte!");        
@@ -48,22 +53,22 @@ public class TelaCargo extends JFrame {
         p.add(cxMaioridade);
         //cbSexo.setSelectedIndex(0); se true = marcado
         cxMaioridade.isSelected(); //saber o que esta marcado; boolean
-        p.add(rbZonaRural);
-        p.add(rbZonaUrbana);
-        p.add(rbZonaCosmo);
+        p.add(rbAmigo);
+        p.add(rbAnuncio);
+        p.add(rbSozinho);
         
         ButtonGroup bgZona = new ButtonGroup();
         //agrupamento lógico, nao aparece na tela, inserção dos componentes do container painel
-        bgZona.add(rbZonaRural);
-        bgZona.add(rbZonaUrbana);
-        bgZona.add(rbZonaCosmo);
+        bgZona.add(rbAmigo);
+        bgZona.add(rbAnuncio);
+        bgZona.add(rbSozinho);
         
         p.add(taSeuComentario);
         
         p.add(lbMsg);
         p.add(lbResp);
         
-        //
+        
         
         btOk.addActionListener(
                 new ActionListener() {
@@ -73,7 +78,7 @@ public class TelaCargo extends JFrame {
                               lbMsg.setText("Boa noite, Sr. ".concat(jtfNome.getText()));
                            } else {
                               lbMsg.setText("Boa noite, Sra. ".concat(jtfNome.getText()));
-                          }
+                          }                          
                     }
         }
         );
