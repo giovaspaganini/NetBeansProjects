@@ -3,12 +3,16 @@ package contatoform;
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.HeadlessException;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -34,7 +38,7 @@ public class TelaFormulario extends JFrame{
         Container p = this.getContentPane();
         
         p.add(new JLabel("\nNome: "));
-        p.add(jtfNome);
+        p.add(jtfNome);        
         
         p.add(new JLabel("\nE-m@il: "));
         p.add(jtfEmail);
@@ -70,6 +74,40 @@ public class TelaFormulario extends JFrame{
         p.add(lbMsg);
         p.add(lbResp);
         
+        btEnviar.addActionListener(
+        new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (jtfNome.getText().equals("")) {
+                    
+                }
+                
+                if (cbAssunto.getSelectedIndex() == 0){
+                    lbResp.setText("Obrigado, ".concat(jtfNome.getText())
+                    .concat(", nossa equipe de vendas entrará em contato através do telefone providenciado.")
+                    );
+                } else if (cbAssunto.getSelectedIndex() == 1){
+                    lbResp.setText("Obrigado, ".concat(jtfNome.getText())
+                    .concat(", nossa equipe de suporte entrará em contato através do telefone providenciado.")
+                    );
+                } else if (cbAssunto.getSelectedIndex() == 2){
+                    lbResp.setText("Obrigado, ".concat(jtfNome.getText())
+                    .concat(", um atendente será designado para entrar em contato através do telefone providenciado.")
+                    );
+                } else {
+                    lbResp.setText("Dados Inválidos!");
+                }
+                
+                if (cxMaioridade.isSelected() == false) {
+                  JOptionPane.showMessageDialog(null, "CONFIRMA DI MAIÓ!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Obrigado, entraremos em contato assim que possível!");                    
+                }                
+                
+            }
+        }
+        
+        );        
         
         this.setSize(800,600);
         this.setDefaultCloseOperation(
