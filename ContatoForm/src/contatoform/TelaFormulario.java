@@ -2,6 +2,7 @@ package contatoform;
 
 import java.awt.Container;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
@@ -37,6 +38,7 @@ public class TelaFormulario extends JFrame{
         this.setLayout(new FlowLayout());
         Container p = this.getContentPane();
         
+        p.setLayout(new GridLayout(0, 1));
         p.add(new JLabel("\nNome: "));
         p.add(jtfNome);        
         
@@ -73,43 +75,63 @@ public class TelaFormulario extends JFrame{
         
         p.add(lbMsg);
         p.add(lbResp);
-        
+
         btEnviar.addActionListener(
         new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (jtfNome.getText().equals("")) {
-                    
+                
+                String validaNome = jtfNome.getText();                
+                if (validaNome.isEmpty()) {
+                    lbResp.setText("Nome inválido");
+                    return;
+                }
+                
+                String validaEmail = jtfEmail.getText();
+                if (validaEmail.isEmpty()){
+                    lbResp.setText("Email inválido!");
+                    return;
+                }
+                
+                String validaTelefone = jtfTel.getText();
+                if (validaTelefone.isEmpty()){
+                    lbResp.setText("Telefone inválido!");
+                    return;
+                }
+                
+                String validaMsg = jtfTel.getText();
+                if (validaMsg.isEmpty()){
+                    lbResp.setText("Mensagem inválida!");
+                    return;
                 }
                 
                 if (cbAssunto.getSelectedIndex() == 0){
                     lbResp.setText("Obrigado, ".concat(jtfNome.getText())
                     .concat(", nossa equipe de vendas entrará em contato através do telefone providenciado.")
                     );
-                } else if (cbAssunto.getSelectedIndex() == 1){
+                } 
+                if (cbAssunto.getSelectedIndex() == 1){
                     lbResp.setText("Obrigado, ".concat(jtfNome.getText())
                     .concat(", nossa equipe de suporte entrará em contato através do telefone providenciado.")
                     );
-                } else if (cbAssunto.getSelectedIndex() == 2){
+                }
+                if (cbAssunto.getSelectedIndex() == 2){
                     lbResp.setText("Obrigado, ".concat(jtfNome.getText())
                     .concat(", um atendente será designado para entrar em contato através do telefone providenciado.")
                     );
-                } else {
-                    lbResp.setText("Dados Inválidos!");
-                }
+                }                 
                 
-                if (cxMaioridade.isSelected() == false) {
-                  JOptionPane.showMessageDialog(null, "CONFIRMA DI MAIÓ!");
+                if (!cxMaioridade.isSelected()) {
+                  JOptionPane.showMessageDialog(null, "Confirme sua idade!!");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Obrigado, entraremos em contato assim que possível!");                    
+                    JOptionPane.showMessageDialog(null, "Obrigado, seus dados foram enviados com sucesso!");
                 }                
-                
             }
         }
         
         );        
         
-        this.setSize(800,600);
+        this.setSize(640,640);
         this.setDefaultCloseOperation(
                 JFrame.EXIT_ON_CLOSE
         );
