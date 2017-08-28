@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package calculadora;
+package calculadora.visao;
+import calculadora.Calculos;
 
 /**
  *
@@ -267,11 +268,12 @@ public class CalculadoraTela extends javax.swing.JFrame {
                     .addComponent(botao6)
                     .addComponent(botaoSubtracao))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botao7)
-                    .addComponent(botao8)
-                    .addComponent(botao9)
-                    .addComponent(botaoSoma, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoSoma, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(botao7)
+                        .addComponent(botao8)
+                        .addComponent(botao9)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(botao0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -298,7 +300,6 @@ public class CalculadoraTela extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoCEMouseClicked
-        String valor = visorCalculadora.getText();
         visorCalculadora.setText("");
     }//GEN-LAST:event_botaoCEMouseClicked
 

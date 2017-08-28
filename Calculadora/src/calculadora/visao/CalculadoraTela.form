@@ -144,11 +144,13 @@
                       <Component id="botaoSubtracao" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="botao7" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="botao8" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="botao9" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="botaoSoma" alignment="1" min="-2" pref="24" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="botao7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="botao8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="botao9" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
