@@ -13,6 +13,9 @@ public class Main {
         Cargo a2 = new Cargo("Analista DBA", 4600);
         CargoDAO.create(a2);
         
+        System.out.println(a1);
+        System.out.println(a2);
+        
         
         
         

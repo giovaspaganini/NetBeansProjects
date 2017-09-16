@@ -49,6 +49,6 @@ public class Cargo {
 
     @Override
     public String toString() {
-        return "Cargo{" + "Descricao=" + descricao + ", gratificacao=" + gratificacao + '}';
+        return "Cargo{" + "pk=" + pk + ", Descricao=" + descricao + ", gratificacao=" + gratificacao + '}';
     }
 }
