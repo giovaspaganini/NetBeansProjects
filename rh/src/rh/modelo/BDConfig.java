@@ -1,4 +1,4 @@
-package empresafx.model;
+package rh.modelo;
 public class BDConfig {
     public static final String URL = "jdbc:postgresql://localhost/rh";
     public static final String USR = "postgres";
