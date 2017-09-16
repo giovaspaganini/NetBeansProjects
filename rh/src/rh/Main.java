@@ -1,21 +1,25 @@
 package rh;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import rh.modelo.BancoDados;
+import rh.modelo.CargoDAO;
+import rh.negocio.Cargo;
 
 public class Main {
     public static void main(String[] args) throws SQLException {     
-        Connection c = BancoDados.createConnection();
+       
+        Cargo a1 = new Cargo("SW Tester", 300);
+        CargoDAO.create(a1);
         
-        PreparedStatement stm = c.prepareStatement(
-        "insert into cargos (descricao, gratificacao) values (?, ?)");
+        Cargo a2 = new Cargo("Analista DBA", 4600);
+        CargoDAO.create(a2);
         
-        stm.setString(1, "Engenheiro de SW");
-        stm.setDouble(2, 5000);
         
-        stm.execute();
+        
+        
+        
+        
+        
+        
         
         /*new TelaCargo().setVisible(true);
         

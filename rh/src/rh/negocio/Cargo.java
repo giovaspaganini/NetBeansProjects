@@ -10,6 +10,7 @@ package rh.negocio;
  * @author L
  */
 public class Cargo {
+    private int pk;
     private String descricao;
     private double gratificacao;
 
@@ -17,6 +18,7 @@ public class Cargo {
     }
 
     public Cargo(String descricao, double gratificacao) {
+        this.pk = pk;
         this.descricao = descricao;
         this.gratificacao = gratificacao;
     }
@@ -35,6 +37,14 @@ public class Cargo {
 
     public void setGratificacao(double gratificacao) {
         this.gratificacao = gratificacao;
+    }
+
+    public int getPk() {
+        return pk;
+    }
+
+    public void setPk(int pk) {
+        this.pk = pk;
     }
 
     @Override
