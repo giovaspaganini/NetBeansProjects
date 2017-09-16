@@ -10,14 +10,12 @@ public class Main {
         Connection c = BancoDados.createConnection();
         
         PreparedStatement stm = c.prepareStatement(
-        "insert into cargos "
-                + "(descricao, gratificacao) "
-                + "values ('java developer', "
-                + "3000)"
-        );
-        stm.execute();
+        "insert into cargos (descricao, gratificacao) values (?, ?)");
         
-                
+        stm.setString(1, "Engenheiro de SW");
+        stm.setDouble(2, 5000);
+        
+        stm.execute();
         
         /*new TelaCargo().setVisible(true);
         
