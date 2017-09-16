@@ -12,19 +12,15 @@ import java.util.logging.Logger;
  * @author user
  */
 public class BancoDados {
-
-    private static Connection conn;
-    
-    private BancoDados(){
+    private static Connection conn;    
+    private BancoDados(){        
         
     }
     
     public static Connection createConnection() {
         if (conn != null){
             return conn;
-        }
-        
-        
+        }                
         try {
             Class.forName(BDConfig.DRIVER);
             conn = DriverManager.getConnection(
@@ -34,8 +30,7 @@ public class BancoDados {
             return conn;
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(BancoDados.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        }        
         return null;        
     }
 }

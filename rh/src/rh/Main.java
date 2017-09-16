@@ -1,20 +1,27 @@
 package rh;
 
-import rh.negocio.Itens;
-import rh.negocio.Endereco;
-import rh.negocio.Venda;
-import rh.negocio.Funcionario;
-import rh.negocio.Dependente;
-import rh.negocio.Cargo;
-import rh.negocio.Produto;
-import rh.visao.TelaCargo;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import rh.modelo.BancoDados;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {     
+        Connection c = BancoDados.createConnection();
         
-        new TelaCargo().setVisible(true);
+        PreparedStatement stm = c.prepareStatement(
+        "insert into cargos "
+                + "(descricao, gratificacao) "
+                + "values ('java developer', "
+                + "3000)"
+        );
+        stm.execute();
         
-     /*  Funcionario f = new Funcionario("Pedro", 
+                
+        
+        /*new TelaCargo().setVisible(true);
+        
+     Funcionario f = new Funcionario("Pedro", 
                 2500, 
                 new Dependente("Lucas", "Filho"), 
                 new Endereco("Rua Tal", "St Tal", "Mhs", "GO"), 
