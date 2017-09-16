@@ -42,4 +42,22 @@ public class CargoDAO {
         //retorna chave primaria
         return c.getPk();
     }
+    
+    public static Cargo retrieve(int pk) throws SQLException{
+        Connection conn = BancoDados.createConnection();
+        PreparedStatement stm = conn.prepareStatement(
+                    "SELECT * FROM cargos WHERE pk_cargo = ?"
+         );
+        
+        stm.setInt(1, pk);
+        stm.execute();
+        
+        ResultSet rs = stm.getResultSet();     
+        
+        rs.next();
+        
+        return new Cargo(rs.getInt("pk_cargo"),
+        rs.getString("descricao"),
+        rs.getDouble("gratificacao"));
+    }
 }

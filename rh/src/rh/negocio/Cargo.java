@@ -17,7 +17,7 @@ public class Cargo {
     public Cargo() {
     }
 
-    public Cargo(String descricao, double gratificacao) {
+    public Cargo(int pk, String descricao, double gratificacao) {
         this.pk = pk;
         this.descricao = descricao;
         this.gratificacao = gratificacao;

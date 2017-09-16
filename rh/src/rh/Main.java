@@ -6,15 +6,18 @@ import rh.negocio.Cargo;
 
 public class Main {
     public static void main(String[] args) throws SQLException {     
-       
-        Cargo a1 = new Cargo("SW Tester", 300);
-        CargoDAO.create(a1);
         
-        Cargo a2 = new Cargo("Analista DBA", 4600);
-        CargoDAO.create(a2);
+        System.out.println(CargoDAO.retrieve(5));
         
-        System.out.println(a1);
-        System.out.println(a2);
+        
+//        Cargo a1 = new Cargo("SW Tester", 300);
+//        CargoDAO.create(a1);
+//        
+//        Cargo a2 = new Cargo("Analista DBA", 4600);
+//        CargoDAO.create(a2);
+//        
+//        System.out.println(a1);
+//        System.out.println(a2);
         
         
         
