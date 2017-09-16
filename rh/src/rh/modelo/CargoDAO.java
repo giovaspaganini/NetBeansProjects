@@ -37,10 +37,9 @@ public class CargoDAO {
         rs.next();//coloca o resultset em uma posicao valida
         c.setPk(rs.getInt(1));//recupera o valor da chave na primeira coluna (getInt 1º)
         
+        //fecha a assertiva
         stm.close();                   
-        
+        //retorna chave primaria
         return c.getPk();
     }
-
-    
 }
