@@ -5,30 +5,30 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import rh.negocio.Cargo;
+import rh.negocio.Produto;
 
 /**
  *
  * @author user
  */
-public class CargoDAO {
-    
+public class ProdutoDAO {
+        
     //C . R . U . D. MOTHERF*CKER
     
-    public static int create(Cargo c) throws SQLException{
+    public static int create(Produto p) throws SQLException{
         //retorna uma conexao valida
         Connection conn = 
                 BancoDados.createConnection();
         //retorna uma assertiva de insercao para ser complementada (?) e que tambem é capaz de retornar chaves primarias(RETURN_GENERATED_KEYS)
         PreparedStatement stm = 
                 conn.prepareStatement(
-                    "INSERT INTO cargos (descricao, gratificacao) VALUES (?, ?)",
+                    "INSERT INTO produtos (descricao, valor_unitario) VALUES (?, ?)",
                         PreparedStatement.RETURN_GENERATED_KEYS
                 );
         
         //complementa a primeira interrogação (?) com a descrição que vem de cargo
-        stm.setString(1, c.getDescricao());
-        stm.setDouble(2, c.getGratificacao());
+        stm.setString(1, p.getDescricao());
+        stm.setDouble(2, p.getValorUnitario());
         
         //executa o comando no BD
         stm.execute();
@@ -36,18 +36,18 @@ public class CargoDAO {
         ResultSet rs = stm.getGeneratedKeys();
         
         rs.next();//coloca o resultset em uma posicao valida
-        c.setPk(rs.getInt(1));//recupera o valor da chave na primeira coluna (getInt 1º)
+        p.setPk(rs.getInt(1));//recupera o valor da chave na primeira coluna (getInt 1º)
         
         //fecha a assertiva
         stm.close();                   
         //retorna chave primaria
-        return c.getPk();
+        return p.getPk();
     }
     
-    public static Cargo retrieve(int pk) throws SQLException{
+    public static Produto retrieve(int pk) throws SQLException{
         Connection conn = BancoDados.createConnection();
         PreparedStatement stm = conn.prepareStatement(
-                    "SELECT * FROM cargos WHERE pk_cargo = ?"
+                    "SELECT * FROM produtos WHERE pk_produto = ?"
          );
         
         stm.setInt(1, pk);
@@ -57,25 +57,25 @@ public class CargoDAO {
         
         rs.next();
         
-        return new Cargo(rs.getInt("pk_cargo"),
+        return new Produto(rs.getInt("pk_produto"),
         rs.getString("descricao"),
-        rs.getDouble("gratificacao"));
+        rs.getDouble("valor_unitario"));
     }
     
-        public static ArrayList<Cargo> retrieveAll() throws SQLException{
+        public static ArrayList<Produto> retrieveAll() throws SQLException{
         Connection conn = BancoDados.createConnection();
-        PreparedStatement stm = conn.prepareStatement("SELECT * FROM cargos");     
+        PreparedStatement stm = conn.prepareStatement("SELECT * FROM produtos");     
         
         stm.execute();
         
         ResultSet rs = stm.getResultSet();     
-        ArrayList<Cargo> cargos = new ArrayList<>();
+        ArrayList<Produto> produtos = new ArrayList<>();
         
         while(rs.next()){
-            cargos.add(new Cargo(rs.getInt("pk_cargo"),
+            produtos.add(new Produto(rs.getInt("pk_produto"),
                     rs.getString("descricao"),
-                    rs.getDouble("gratificacao")));
+                    rs.getDouble("valor_unitario")));
         }        
-        return cargos;        
+        return produtos;        
     }
 }

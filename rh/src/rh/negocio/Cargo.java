@@ -14,13 +14,20 @@ public class Cargo {
     private String descricao;
     private double gratificacao;
 
-    public Cargo() {
-    }
-
+    
     public Cargo(int pk, String descricao, double gratificacao) {
         this.pk = pk;
         this.descricao = descricao;
         this.gratificacao = gratificacao;
+    }
+    
+    public Cargo(String descricao, double gratificacao) {
+        this.descricao = descricao;
+        this.gratificacao = gratificacao;
+    }
+    
+    public Cargo(){
+        
     }
 
     public String getDescricao() {

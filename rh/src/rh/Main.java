@@ -1,13 +1,25 @@
 package rh;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import rh.modelo.CargoDAO;
 import rh.negocio.Cargo;
+import rh.modelo.ProdutoDAO;
+import rh.negocio.Produto;
 
 public class Main {
     public static void main(String[] args) throws SQLException {     
         
-        System.out.println(CargoDAO.retrieve(5));
+        ArrayList<Cargo> teste = CargoDAO.retrieveAll();
+        ArrayList<Produto> teste2 = ProdutoDAO.retrieveAll();
+                
+        for (Cargo c:teste){
+            System.out.println(c);
+        }
+        
+        for (Produto p:teste2){
+            System.out.println(p);
+        }
         
         
 //        Cargo a1 = new Cargo("SW Tester", 300);

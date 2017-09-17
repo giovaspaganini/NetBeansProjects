@@ -1,9 +1,16 @@
 package rh.negocio;
 public class Produto {
+    private int pk;
     private String descricao;
     private double valorUnitario;
 
     public Produto(String descricao, double valorUnitario) {
+        this.descricao = descricao;
+        this.valorUnitario = valorUnitario;
+    }
+    
+    public Produto(int pk, String descricao, double valorUnitario) {
+        this.pk = pk;
         this.descricao = descricao;
         this.valorUnitario = valorUnitario;
     }
@@ -25,11 +32,17 @@ public class Produto {
         this.valorUnitario = valorUnitario;
     }
 
-   
+    public int getPk() {
+        return pk;
+    }
+
+    public void setPk(int pk) {
+        this.pk = pk;
+    }
 
     @Override
     public String toString() {        
-        return descricao + " R$:" + valorUnitario;               
+        return pk + descricao + " R$:" + valorUnitario;               
     }
     
 }

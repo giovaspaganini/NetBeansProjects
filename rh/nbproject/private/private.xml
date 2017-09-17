@@ -6,6 +6,9 @@
             <file>file:/home/user/NetBeansProjects/rh/src/rh/negocio/Cargo.java</file>
             <file>file:/home/user/NetBeansProjects/rh/src/rh/Main.java</file>
             <file>file:/home/user/NetBeansProjects/rh/src/rh/visao/TelaCargo.java</file>
+            <file>file:/home/user/NetBeansProjects/rh/src/rh/modelo/BDConfig.java</file>
+            <file>file:/home/user/NetBeansProjects/rh/src/rh/modelo/CargoDAO.java</file>
+            <file>file:/home/user/NetBeansProjects/rh/src/rh/modelo/BancoDados.java</file>
         </group>
     </open-files>
 </project-private>
