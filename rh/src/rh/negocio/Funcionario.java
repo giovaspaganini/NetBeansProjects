@@ -1,11 +1,32 @@
 package rh.negocio;
 import java.util.ArrayList;
-public class Funcionario {    
+
+public class Funcionario {
+    
+    private int pk;
     private String nome;
     private double salario;    
     private ArrayList<Dependente> dependentes;
     private ArrayList<Endereco> endereco = new ArrayList<>();
     private Cargo cargo;
+
+    
+    
+    
+    public Funcionario(int pk,
+            String nome, 
+            double salario, 
+            Dependente dependente, 
+            Endereco endereco, 
+            Cargo cargo) {
+        
+        this.pk = pk;
+        this.nome = nome;
+        this.salario = salario;
+        getDependentes().add(dependente);
+        this.endereco.add(endereco);
+        this.cargo = cargo;
+    }
 
     public Funcionario(String nome, 
             double salario, 
@@ -19,6 +40,31 @@ public class Funcionario {
         this.endereco.add(endereco);
         this.cargo = cargo;
     }
+    
+        public Funcionario(String nome, 
+            double salario, 
+            Dependente dependente, 
+            Cargo cargo) {
+        
+        this.nome = nome;
+        this.salario = salario;
+        getDependentes().add(dependente);
+        this.cargo = cargo;
+    }
+    
+    public Funcionario(String nome, 
+            double salario, 
+            Dependente dependente, 
+            ArrayList<Endereco>  enderecos, 
+            Cargo cargo) {
+        
+        this.nome = nome;
+        this.salario = salario;
+        getDependentes().add(dependente);
+        this.endereco = enderecos;
+        this.cargo = cargo;
+    }
+    
 
     public Funcionario(String nome, double salario, ArrayList<Endereco> endereco, Cargo cargo) {
         this.nome = nome;
@@ -69,6 +115,14 @@ public class Funcionario {
 
     public void setCargo(Cargo cargo) {
         this.cargo = cargo;
+    }
+
+    public int getPk() {
+        return pk;
+    }
+
+    public void setPk(int pk) {
+        this.pk = pk;
     }
     
     public double calculeSalario(){

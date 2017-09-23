@@ -10,10 +10,17 @@ package rh.negocio;
  * @author L
  */
 public class Dependente {
+    private int pk;
     private String nome;
     private String parentesco;
 
     public Dependente() {
+    }
+    
+    public Dependente(int pk, String nome, String parentesco) {
+        this.pk = pk;
+        this.nome = nome;
+        this.parentesco = parentesco;
     }
 
     public Dependente(String nome, String parentesco) {
@@ -36,6 +43,14 @@ public class Dependente {
     public void setParentesco(String parentesco) {
         this.parentesco = parentesco;
     }
+
+    public int getPk() {
+        return pk;
+    }
+
+    public void setPk(int pk) {
+        this.pk = pk;
+    }    
 
     @Override
     public String toString() {

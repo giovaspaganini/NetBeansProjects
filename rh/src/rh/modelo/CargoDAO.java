@@ -63,19 +63,90 @@ public class CargoDAO {
     }
     
         public static ArrayList<Cargo> retrieveAll() throws SQLException{
-        Connection conn = BancoDados.createConnection();
-        PreparedStatement stm = conn.prepareStatement("SELECT * FROM cargos");     
+            
+            ArrayList<Cargo> aux = new ArrayList<>();
+            Connection conn = BancoDados.createConnection();
+            
+            String sql = "SELECT * FROM cargos";
+            
+            ResultSet rs = conn.createStatement().executeQuery(sql);
+            
+            while (rs.next()){
+                Cargo c = new Cargo(rs.getInt("pk_cargo"), 
+                        rs.getString("descricao"),
+                        rs.getDouble("gratificacao"));
+                
+                aux.add(c);
+            }
+            
+            
+            return aux;
+        }
         
+        public static ArrayList<Cargo> retrieveAll(double gratificacaoInicial, double gratificacaoFinal) throws SQLException{
+        ArrayList<Cargo> aux = new ArrayList<>();
+        String sql = "select * from cargos where gratificacao>=? and gratificacao<=?";
+        Connection conn = BancoDados.createConnection();
+        PreparedStatement stm = conn.prepareStatement(sql);
+        stm.setDouble(1, gratificacaoInicial);
+        stm.setDouble(2, gratificacaoFinal);
         stm.execute();
         
-        ResultSet rs = stm.getResultSet();     
-        ArrayList<Cargo> cargos = new ArrayList<>();
-        
-        while(rs.next()){
-            cargos.add(new Cargo(rs.getInt("pk_cargo"),
-                    rs.getString("descricao"),
-                    rs.getDouble("gratificacao")));
-        }        
-        return cargos;        
+        ResultSet rs = stm.getResultSet();
+        while (rs.next()){
+            Cargo c = new Cargo(rs.getInt("pk_cargo"), 
+                                rs.getString("descricao"),
+                                rs.getDouble("gratificacao"));
+            aux.add(c);
+        }
+        return aux;
     }
+        
+    public static void update(Cargo c) throws SQLException{
+        if (c.getPk()==0){
+            throw new SQLException("Objeto não persistido ainda ou com a chave primária não configurada");
+        }
+        
+        String sql = "update cargos set descricao=?, gratificacao=? where pk_cargo=?";
+        
+        Connection conn = BancoDados.createConnection();
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setString(1, c.getDescricao());
+        stm.setDouble(2, c.getGratificacao());
+        stm.setInt(3, c.getPk());
+    }
+    
+    public static void delete(Cargo c) throws SQLException{
+        if (c.getPk()==0){
+            throw new SQLException("Objeto não persistido ainda ou com a chave primária não configurada");
+        }
+        
+        String sql = "delete from cargos where pk_cargo=?";
+        
+        Connection conn = BancoDados.createConnection();
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setInt(1, c.getPk());
+        stm.execute();
+        stm.close();
+    }
+            
+            
+            
+//        Connection conn = BancoDados.createConnection();
+//        PreparedStatement stm = conn.prepareStatement("SELECT * FROM cargos");     
+//        
+//        stm.execute();
+//        
+//        ResultSet rs = stm.getResultSet();     
+//        ArrayList<Cargo> cargos = new ArrayList<>();
+//        
+//        while(rs.next()){
+//            cargos.add(new Cargo(rs.getInt("pk_cargo"),
+//                    rs.getString("descricao"),
+//                    rs.getDouble("gratificacao")));
+//        }        
+//        return cargos;       
+    
 }

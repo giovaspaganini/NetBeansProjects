@@ -1,47 +1,48 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package rh;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import rh.modelo.BancoDados;
 import rh.modelo.CargoDAO;
+import rh.negocio.Funcionario;
 import rh.negocio.Cargo;
-import rh.modelo.ProdutoDAO;
-import rh.negocio.Produto;
+import rh.negocio.Dependente;
+import rh.negocio.Endereco;
+import rh.visao.TelaCargo;
 
+/**
+ *
+ * @author L
+ */
 public class Main {
-    public static void main(String[] args) throws SQLException {     
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) throws SQLException  {
         
-        ArrayList<Cargo> teste = CargoDAO.retrieveAll();
-        ArrayList<Produto> teste2 = ProdutoDAO.retrieveAll();
-                
-        for (Cargo c:teste){
-            System.out.println(c);
-        }
+    
+         
         
-        for (Produto p:teste2){
-            System.out.println(p);
-        }
-        
-        
-//        Cargo a1 = new Cargo("SW Tester", 300);
+//        Cargo a1 =  new Cargo("Analista", 300);
 //        CargoDAO.create(a1);
 //        
-//        Cargo a2 = new Cargo("Analista DBA", 4600);
+//        Cargo a2 =  new Cargo("DBA", 300);
 //        CargoDAO.create(a2);
 //        
 //        System.out.println(a1);
 //        System.out.println(a2);
         
+        new TelaCargo().setVisible(true);
         
-        
-        
-        
-        
-        
-        
-        
-        /*new TelaCargo().setVisible(true);
-        
-     Funcionario f = new Funcionario("Pedro", 
+/**        Funcionario f = new Funcionario("Pedro", 
                 2500, 
                 new Dependente("Lucas", "Filho"), 
                 new Endereco("Rua Tal", "St Tal", "Mhs", "GO"), 
@@ -52,14 +53,9 @@ public class Main {
         f.getDependentes().add(d);//passada por referencia
         f.getDependentes().add(new Dependente("Lia", "Filha"));//instaciacao anonima
         
-        f.getEndereco().add(new Endereco("Rua Fulano", "St Ciclano", "Gyn", "GO"));       
+        f.getEndereco().add(new Endereco("Rua Fulano", "St Ciclano", "Gyn", "GO"));
         
-        Venda v = new Venda(1, "18-08-2017", 5.0, new Itens(2.0, new Produto("Mouse", 10.0)));
-        
-        v.getItem().add(new Itens(2, new Produto("Teclado", 10.0)));                
-        v.getItem().add(new Itens(1, new Produto("Pendrive", 15.0)));
-        
-        //System.out.println(f);
-        System.out.println(v);*/
+        System.out.println(f);
+*/
     }    
 }

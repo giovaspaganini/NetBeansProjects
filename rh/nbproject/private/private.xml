@@ -3,12 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/user/NetBeansProjects/rh/src/rh/modelo/ProdutoDAO.java</file>
+            <file>file:/home/user/NetBeansProjects/rh/src/rh/modelo/FuncionarioDAO.java</file>
+            <file>file:/home/user/NetBeansProjects/rh/src/rh/negocio/Funcionario.java</file>
+            <file>file:/home/user/NetBeansProjects/rh/src/rh/visao/TelaCargo.java</file>
+            <file>file:/home/user/NetBeansProjects/rh/src/rh/negocio/Endereco.java</file>
+            <file>file:/home/user/NetBeansProjects/rh/src/rh/modelo/ItensDAO.java</file>
+            <file>file:/home/user/NetBeansProjects/rh/src/rh/modelo/CargoDAO.java</file>
+            <file>file:/home/user/NetBeansProjects/rh/src/rh/modelo/DependenteDAO.java</file>
+            <file>file:/home/user/NetBeansProjects/rh/src/rh/modelo/EnderecoDAO.java</file>
             <file>file:/home/user/NetBeansProjects/rh/src/rh/negocio/Cargo.java</file>
             <file>file:/home/user/NetBeansProjects/rh/src/rh/Main.java</file>
-            <file>file:/home/user/NetBeansProjects/rh/src/rh/visao/TelaCargo.java</file>
-            <file>file:/home/user/NetBeansProjects/rh/src/rh/modelo/BDConfig.java</file>
-            <file>file:/home/user/NetBeansProjects/rh/src/rh/modelo/CargoDAO.java</file>
-            <file>file:/home/user/NetBeansProjects/rh/src/rh/modelo/BancoDados.java</file>
+            <file>file:/home/user/NetBeansProjects/rh/src/rh/negocio/Itens.java</file>
+            <file>file:/home/user/NetBeansProjects/rh/src/rh/negocio/Dependente.java</file>
         </group>
     </open-files>
 </project-private>

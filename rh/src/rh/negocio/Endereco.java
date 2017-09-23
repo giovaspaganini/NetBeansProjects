@@ -10,13 +10,21 @@ package rh.negocio;
  * @author L
  */
 public class Endereco {
-    
+    private int pk;
     private String logradouro;
     private String bairro;
     private String cidade;
     private String estado;
 
     public Endereco() {
+    }
+    
+    public Endereco(int pk, String logradouro, String bairro, String cidade, String estado) {
+        this.pk = pk;
+        this.logradouro = logradouro;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
     }
 
     public Endereco(String logradouro, String bairro, String cidade, String estado) {
@@ -56,6 +64,14 @@ public class Endereco {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public int getPk() {
+        return pk;
+    }
+
+    public void setPk(int pk) {
+        this.pk = pk;
     }
 
     @Override

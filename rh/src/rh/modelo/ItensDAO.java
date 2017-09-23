@@ -47,7 +47,7 @@ public class ItensDAO {
     public static Itens retrieve(int pk) throws SQLException{
         Connection conn = BancoDados.createConnection();
         PreparedStatement stm = conn.prepareStatement(
-                    "SELECT * FROM itens WHERE pk_item = ?"
+                    "SELECT * FROM itens WHERE pk_item = ? AND fk_produto = ?"
          );
         
         stm.setInt(1, pk);
@@ -58,8 +58,8 @@ public class ItensDAO {
         rs.next();
         
         return new Itens(rs.getInt("pk_item"),
-        rs.getDouble("fk_produto"),
-        rs.getDouble("quantidade"));
+        rs.getDouble("quantidade"),
+        rs.getString("fk_produto"));
     }
     
         public static ArrayList<Itens> retrieveAll() throws SQLException{
@@ -73,8 +73,8 @@ public class ItensDAO {
         
         while(rs.next()){
             itens.add(new Itens(rs.getInt("pk_item"),
-                    rs.getString("fk_produto"),
-                    rs.getDouble("quantidade")));
+                    rs.getString("quantidade"),
+                    rs.getDouble("")));
         }        
         return itens;        
     }    
