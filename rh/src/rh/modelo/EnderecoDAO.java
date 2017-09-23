@@ -17,28 +17,30 @@ public class EnderecoDAO {
     Connection conn = BancoDados.createConnection();
 
     PreparedStatement stm = 
-            conn.prepareStatement("insert into enderecos (logradouro, bairro, cidade, estado) values (?,?,?,?)",
-                    PreparedStatement.RETURN_GENERATED_KEYS);
-
-    stm.setString(1, e.getLogradouro());
-    stm.setString(2, e.getBairro());
-    stm.setString(3, e.getCidade());
-    stm.setString(4, e.getEstado());
+            conn.prepareStatement("INSERT INTO enderecos (fk_funcionario, logradouro, bairro, cidade, estado) VALUES (?,?,?,?)",
+                    PreparedStatement.RETURN_GENERATED_KEYS
+            );
+    
+    stm.setInt(1, e.getFk_funcionario());
+    stm.setString(2, e.getLogradouro());
+    stm.setString(3, e.getBairro());
+    stm.setString(4, e.getCidade());
+    stm.setString(5, e.getEstado());
 
     stm.execute();
 
     ResultSet rs = stm.getGeneratedKeys();
     rs.next();
-    e.setPk(rs.getInt(1));
+    e.setPk_endereco(rs.getInt(1));
 
     stm.close();
 
-    return e.getPk();
+    return e.getPk_endereco();
 }
 
 public static Endereco retrieve(int pk) throws SQLException{
     Connection conn = BancoDados.createConnection();
-    PreparedStatement stm = conn.prepareStatement("select * from enderecos where pk_endereco = ?");
+    PreparedStatement stm = conn.prepareStatement("SELECT * FROM enderecos WHERE pk_endereco = ?");
     stm.setInt(1, pk);
 
     stm.execute();
@@ -47,26 +49,42 @@ public static Endereco retrieve(int pk) throws SQLException{
 
     rs.next();
 
-    return new Endereco(rs.getInt("pk_endereco"),rs.getString("logradouro"),rs.getString("bairro"),rs.getString("cidade"),rs.getString("estado"));
+    return new Endereco(rs.getInt("pk_endereco"),
+            rs.getInt("fk_funcionario"),
+            rs.getString("logradouro"),
+            rs.getString("bairro"),
+            rs.getString("cidade"),
+            rs.getString("estado")
+    );
 }
 
 
 
-public static ArrayList<Endereco> retrieveAll() throws SQLException{
-
+public static ArrayList<Endereco> retrieveAll(int fk_funcionario) throws SQLException{    
+    ArrayList<Endereco> aux = new ArrayList<>();
+    
     Connection conn = BancoDados.createConnection();
-    PreparedStatement stm = conn.prepareStatement("select * from enderecos");
+    String sql = "SELECT * FROM enderecos where fk_funcionario = ?";
+    
+    PreparedStatement stm = conn.prepareStatement("SELECT * FROM endereco WHERE pk_endereco = ?");
+    stm.setInt(1, fk_funcionario);
 
     stm.execute();
 
-    ResultSet rs = stm.getResultSet();
-    ArrayList<Endereco> enderecos = new ArrayList<>();
+    ResultSet rs = stm.getResultSet();    
 
     while(rs.next()){
-        enderecos.add(new Endereco(rs.getInt("pk_endereco"),rs.getString("logradouro"),rs.getString("bairro"),rs.getString("cidade"),rs.getString("estado")));
+        Endereco e = new Endereco(rs.getInt("pk_endereco"),
+                rs.getInt("fk_funcionario"),
+                rs.getString("logradouro"),
+                rs.getString("bairro"),
+                rs.getString("cidade"),
+                rs.getString("estado")
+        );
+        
+        aux.add(e);
     }
 
-    return enderecos;
-
-}    
+    return aux;
+    }    
 }

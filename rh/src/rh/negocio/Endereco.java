@@ -10,7 +10,8 @@ package rh.negocio;
  * @author L
  */
 public class Endereco {
-    private int pk;
+    private int pk_endereco;
+    private int fk_funcionario;
     private String logradouro;
     private String bairro;
     private String cidade;
@@ -19,15 +20,17 @@ public class Endereco {
     public Endereco() {
     }
     
-    public Endereco(int pk, String logradouro, String bairro, String cidade, String estado) {
-        this.pk = pk;
+    public Endereco(int pk_endereco, int fk_funcionario, String logradouro, String bairro, String cidade, String estado) {
+        this.pk_endereco = pk_endereco;
+        this.fk_funcionario = fk_funcionario;
         this.logradouro = logradouro;
         this.bairro = bairro;
         this.cidade = cidade;
         this.estado = estado;
     }
 
-    public Endereco(String logradouro, String bairro, String cidade, String estado) {
+    public Endereco(int fk_funcionario, String logradouro, String bairro, String cidade, String estado) {
+        this.fk_funcionario = fk_funcionario;
         this.logradouro = logradouro;
         this.bairro = bairro;
         this.cidade = cidade;
@@ -66,17 +69,25 @@ public class Endereco {
         this.estado = estado;
     }
 
-    public int getPk() {
-        return pk;
+    public int getPk_endereco() {
+        return pk_endereco;
     }
 
-    public void setPk(int pk) {
-        this.pk = pk;
+    public void setPk_endereco(int pk_endereco) {
+        this.pk_endereco = pk_endereco;
     }
+
+    public int getFk_funcionario() {
+        return fk_funcionario;
+    }
+
+    public void setFk_funcionario(int fk_funcionario) {
+        this.fk_funcionario = fk_funcionario;
+    }    
 
     @Override
     public String toString() {
-        return "Endereco{" + "logradouro=" + logradouro + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + '}';
+        return "Endereco{" + "pk_endereco=" + pk_endereco + ", fk_funcionario=" + fk_funcionario + ", logradouro=" + logradouro + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + '}';
     }
    
 }
