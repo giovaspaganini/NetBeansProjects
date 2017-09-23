@@ -58,8 +58,6 @@ public static Endereco retrieve(int pk) throws SQLException{
     );
 }
 
-
-
 public static ArrayList<Endereco> retrieveAll(int fk_funcionario) throws SQLException{    
     ArrayList<Endereco> aux = new ArrayList<>();
     
@@ -86,5 +84,41 @@ public static ArrayList<Endereco> retrieveAll(int fk_funcionario) throws SQLExce
     }
 
     return aux;
-    }    
+    }
+
+    public static void update(Endereco e) throws SQLException{
+        if (e.getPk_endereco()==0){
+            throw new SQLException("Objeto não persistido ainda ou com a chave primária não configurada");
+        }
+        
+        String sql = "UPDATE enderecos SET fk_funcionario=?, logradouro=?, bairro=?, cidade=?, estado=? where pk_endereco=?";
+        
+        Connection conn = BancoDados.createConnection();
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setInt(1, e.getFk_funcionario());
+        stm.setString(2, e.getLogradouro());
+        stm.setString(3, e.getBairro());
+        stm.setString(4, e.getCidade());
+        stm.setString(5, e.getEstado());
+        
+        stm.execute();
+        stm.close();
+    }
+    
+    public static void delete(Endereco e) throws SQLException{
+        if (e.getPk_endereco()==0){
+            throw new SQLException("Objeto não persistido ainda ou com a chave primária não configurada");
+        }
+
+        String sql = "DELETE FROM enderecos WHERE pk_endereco=?";
+        
+        Connection conn = BancoDados.createConnection();
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setInt(1, e.getPk_endereco());       
+        stm.execute();
+        stm.close();        
+    }
+
 }

@@ -12,35 +12,23 @@ import rh.negocio.Produto;
  * @author user
  */
 public class ProdutoDAO {
-        
-    //C . R . U . D. MOTHERF*CKER
-    
-    public static int create(Produto p) throws SQLException{
-        //retorna uma conexao valida
-        Connection conn = 
-                BancoDados.createConnection();
-        //retorna uma assertiva de insercao para ser complementada (?) e que tambem é capaz de retornar chaves primarias(RETURN_GENERATED_KEYS)
-        PreparedStatement stm = 
-                conn.prepareStatement(
+    public static int create(Produto p) throws SQLException{        
+        Connection conn = BancoDados.createConnection();
+        PreparedStatement stm = conn.prepareStatement(
                     "INSERT INTO produtos (descricao, valor_unitario) VALUES (?, ?)",
                         PreparedStatement.RETURN_GENERATED_KEYS
-                );
+                );        
         
-        //complementa a primeira interrogação (?) com a descrição que vem de cargo
         stm.setString(1, p.getDescricao());
-        stm.setDouble(2, p.getValorUnitario());
+        stm.setDouble(2, p.getValorUnitario());        
         
-        //executa o comando no BD
         stm.execute();
-        //retorna um conjunto de resultados que contem a chave primaria
         ResultSet rs = stm.getGeneratedKeys();
         
-        rs.next();//coloca o resultset em uma posicao valida
-        p.setPk(rs.getInt(1));//recupera o valor da chave na primeira coluna (getInt 1º)
-        
-        //fecha a assertiva
+        rs.next();
+        p.setPk(rs.getInt(1));
         stm.close();                   
-        //retorna chave primaria
+        
         return p.getPk();
     }
     
@@ -48,7 +36,7 @@ public class ProdutoDAO {
         Connection conn = BancoDados.createConnection();
         PreparedStatement stm = conn.prepareStatement(
                     "SELECT * FROM produtos WHERE pk_produto = ?"
-         );
+        );
         
         stm.setInt(1, pk);
         stm.execute();
@@ -58,24 +46,60 @@ public class ProdutoDAO {
         rs.next();
         
         return new Produto(rs.getInt("pk_produto"),
-        rs.getString("descricao"),
-        rs.getDouble("valor_unitario"));
+                rs.getString("descricao"),
+                rs.getDouble("valor_unitario")
+        );
     }
     
-        public static ArrayList<Produto> retrieveAll() throws SQLException{
+    public static ArrayList<Produto> retrieveAll() throws SQLException{
+        ArrayList<Produto> aux = new ArrayList<>();        
         Connection conn = BancoDados.createConnection();
-        PreparedStatement stm = conn.prepareStatement("SELECT * FROM produtos");     
+        
+        String sql = "SELECT * FROM produtos";
+              
+        ResultSet rs = conn.createStatement().executeQuery(sql);
+        
+        while (rs.next()){
+            Produto p = new Produto(
+                    rs.getInt("pk_produto"), 
+                    rs.getString("descricao"),
+                    rs.getDouble("valor_unitario")
+            );
+            aux.add(p);
+        }        
+        return aux;
+    }
+    
+    public static void update(Produto p) throws SQLException{
+        if (p.getPk()==0){
+            throw new SQLException("Objeto não persistido ainda ou com a chave primária não configurada");
+        }
+        
+        String sql = "UPDATE produtos SET set descricao=?, valor_unitario=? where pk_produto=?";
+        
+        Connection conn = BancoDados.createConnection();
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setString(1, p.getDescricao());
+        stm.setDouble(2, p.getValorUnitario());
+        stm.setInt(3, p.getPk());
         
         stm.execute();
+        stm.close();
+    }
+    
+    public static void delete(Produto p) throws SQLException{
+        if (p.getPk()==0){
+            throw new SQLException("Objeto não persistido ainda ou com a chave primária não configurada");
+        }
+
+        String sql = "DELETE FROM produtos where pk_produto=?";
         
-        ResultSet rs = stm.getResultSet();     
-        ArrayList<Produto> produtos = new ArrayList<>();
+        Connection conn = BancoDados.createConnection();
+        PreparedStatement stm = conn.prepareStatement(sql);
         
-        while(rs.next()){
-            produtos.add(new Produto(rs.getInt("pk_produto"),
-                    rs.getString("descricao"),
-                    rs.getDouble("valor_unitario")));
-        }        
-        return produtos;        
+        stm.setInt(1, p.getPk());       
+        stm.execute();
+        stm.close();        
     }
 }

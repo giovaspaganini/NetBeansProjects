@@ -9,8 +9,6 @@ public class Funcionario {
     private ArrayList<Dependente> dependentes;
     private ArrayList<Endereco> endereco = new ArrayList<>();
     private Cargo cargo;
-
-    
     
     
     public Funcionario(int pk,

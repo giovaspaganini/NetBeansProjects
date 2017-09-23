@@ -13,8 +13,6 @@ import rh.negocio.Cargo;
  */
 public class CargoDAO {
     
-    //C . R . U . D. MOTHERF*CKER
-    
     public static int create(Cargo c) throws SQLException{
         //retorna uma conexao valida
         Connection conn = BancoDados.createConnection();
@@ -53,8 +51,7 @@ public class CargoDAO {
         
         ResultSet rs = stm.getResultSet();     
         
-        rs.next();
-        
+        rs.next();        
         return new Cargo(rs.getInt("pk_cargo"),
                 rs.getString("descricao"),
                 rs.getDouble("gratificacao")
@@ -130,20 +127,5 @@ public class CargoDAO {
         stm.setInt(1, c.getPk());        
         stm.execute();
         stm.close();
-    }            
-//        Connection conn = BancoDados.createConnection();
-//        PreparedStatement stm = conn.prepareStatement("SELECT * FROM cargos");     
-//        
-//        stm.execute();
-//        
-//        ResultSet rs = stm.getResultSet();     
-//        ArrayList<Cargo> cargos = new ArrayList<>();
-//        
-//        while(rs.next()){
-//            cargos.add(new Cargo(rs.getInt("pk_cargo"),
-//                    rs.getString("descricao"),
-//                    rs.getDouble("gratificacao")));
-//        }        
-//        return cargos;       
-    
+    } 
 }
