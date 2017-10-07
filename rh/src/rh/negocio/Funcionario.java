@@ -1,74 +1,47 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package rh.negocio;
+
 import java.util.ArrayList;
 
+/**
+ *
+ * @author L
+ */
 public class Funcionario {
     
-    private int pk;
+    private int pk_funcionario;
     private String nome;
-    private double salario;    
-    private ArrayList<Dependente> dependentes;
-    private ArrayList<Endereco> endereco = new ArrayList<>();
+    private String cpf;
+    
+    private ArrayList<EnderecoFuncionario> endereco = new ArrayList<>();
     private Cargo cargo;
-    
-    
-    public Funcionario(int pk,
-            String nome, 
-            double salario, 
-            Dependente dependente, 
-            Endereco endereco, 
-            Cargo cargo) {
-        
-        this.pk = pk;
+
+    public Funcionario() {
+    }
+
+    public Funcionario(int pk_funcionario, String nome, String cpf, Cargo cargo) {
+        this.pk_funcionario = pk_funcionario;
         this.nome = nome;
-        this.salario = salario;
-        getDependentes().add(dependente);
-        this.endereco.add(endereco);
+        this.cpf = cpf;
         this.cargo = cargo;
     }
 
-    public Funcionario(String nome, 
-            double salario, 
-            Dependente dependente, 
-            Endereco endereco, 
-            Cargo cargo) {
-        
+    public Funcionario(String nome, String cpf, Cargo cargo) {
         this.nome = nome;
-        this.salario = salario;
-        getDependentes().add(dependente);
-        this.endereco.add(endereco);
+        this.cpf = cpf;
         this.cargo = cargo;
     }
-    
-        public Funcionario(String nome, 
-            double salario, 
-            Dependente dependente, 
-            Cargo cargo) {
-        
-        this.nome = nome;
-        this.salario = salario;
-        getDependentes().add(dependente);
-        this.cargo = cargo;
-    }
-    
-    public Funcionario(String nome, 
-            double salario, 
-            Dependente dependente, 
-            ArrayList<Endereco>  enderecos, 
-            Cargo cargo) {
-        
-        this.nome = nome;
-        this.salario = salario;
-        getDependentes().add(dependente);
-        this.endereco = enderecos;
-        this.cargo = cargo;
-    }
-    
 
-    public Funcionario(String nome, double salario, ArrayList<Endereco> endereco, Cargo cargo) {
-        this.nome = nome;
-        this.salario = salario;
-        this.endereco = endereco;
-        this.cargo = cargo;
+    public int getPk_funcionario() {
+        return pk_funcionario;
+    }
+
+    public void setPk_funcionario(int pk_funcionario) {
+        this.pk_funcionario = pk_funcionario;
     }
 
     public String getNome() {
@@ -79,31 +52,19 @@ public class Funcionario {
         this.nome = nome;
     }
 
-    public double getSalario() {
-        return salario;
+    public String getCpf() {
+        return this.cpf;
     }
 
-    public void setSalario(double salario) {
-        this.salario = salario;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
-    public ArrayList<Dependente> getDependentes() {
-        if (dependentes==null){
-            dependentes = new ArrayList<>();                  
-        }
-
-        return dependentes;
-    }
-
-    private void setDependentes(ArrayList<Dependente> dependentes) {
-        this.dependentes = dependentes;
-    }
-
-    public ArrayList<Endereco> getEndereco() {
+    public ArrayList<EnderecoFuncionario> getEndereco() {
         return endereco;
     }
 
-    private void setEndereco(ArrayList<Endereco> endereco) {
+    public void setEndereco(ArrayList<EnderecoFuncionario> endereco) {
         this.endereco = endereco;
     }
 
@@ -115,39 +76,8 @@ public class Funcionario {
         this.cargo = cargo;
     }
 
-    public int getPk() {
-        return pk;
-    }
-
-    public void setPk(int pk) {
-        this.pk = pk;
-    }
-    
-    public double calculeSalario(){
-        return this.salario + this.cargo.getGratificacao();
-    }
-
     @Override
     public String toString() {
-        String aux;
-        
-        aux = "Funcionario{" + "nome=" + nome + ", salario=" + salario + ", cargo=" + cargo + "}";
-        
-        /**
-        for (int i=0; i<endereco.size(); i++){
-            aux += "\n" + endereco.get(i);
-        }
-        */
-        
-        for (Endereco avatar:endereco){
-            aux = aux.concat("\n" + avatar);
-        }
-        
-        for (Dependente avatar:dependentes){
-            aux = aux.concat("\n" + avatar);
-        }    
-                       
-        return aux.concat("Salario Bruto=" + calculeSalario());
+        return "Funcionario{" + "pk_funcionario=" + pk_funcionario + ", nome=" + nome + ", CPF=" + cpf + ", endereco=" + endereco + ", cargo=" + cargo + '}';
     }
-
 }
